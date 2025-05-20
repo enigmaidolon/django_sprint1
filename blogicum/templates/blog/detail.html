@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html> 
+<html lang="ru"> 
+    {% block main_content%}
+        <div class="container py-5">
+          <article>
+            <ul>
+              <li>
+                Место: {{ post.location }}               
+              </li>
+              <li>
+                Дата: {{ post.date }}
+              </li>
+              <li>
+                Категория: <a href="{{ post.category }}"> {{ pospostts.category }}</a>
+              </li>
+            </ul>         
+            <p>
+              {% for line in text %}
+              {{ line }}
+              {% if forloop.last == False %}
+              <br>
+              {% endif %}
+              {% endfor %}
+            </p>          
+          </article>                
+        </div>
+    {% endblock%}
+</html>

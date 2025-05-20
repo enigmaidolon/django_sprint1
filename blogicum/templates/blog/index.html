@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html> 
+<html lang="ru">
+    {% include "header.html" %}
+    {% block main_content%}
+    <div class="container py-5">
+        <h1>Лента записей</h1>    
+        {% for p in post %}                
+            <!-- Перебираем в цикле все посты -->
+            <hr>
+            <article>
+                <article>
+                    <ul>
+                        <li>
+                        Место: {{ p.location }}         
+                        </li>
+                        <li>
+                        Дата: {{ p.date }}     
+                        </li>
+                        <li>
+                        Категория: <a href="{{ p.category }}">{{ p.category }}</a>
+                        </li>
+                    </ul> 
+            <!-- Первые 10 слов -->
+            <p>
+                {% with line=p.text %} <!--как я понимаю, причина незасчитывания теста на инвертированность списка постов-->
+                {{ p.text|truncatewords:10 }}
+                {% endwith %}...
+            </p>
+        <a href="detail.html">Читать полный текст</a>
+        {% endfor %}
+    </article> 
+    </div>
+    {% endblock %}
+</html>
